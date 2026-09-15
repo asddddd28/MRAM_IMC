@@ -1,0 +1,57 @@
+{
+  "layer1.conv1": {
+    "rare_lane_observations": 10,
+    "rare_logical_counters": 7,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer1.conv2": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer2.conv1": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer2.conv2": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer2.downsample.0": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer3.conv1": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer3.conv2": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer3.downsample.0": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer4.conv1": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer4.conv2": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  },
+  "layer4.downsample.0": {
+    "rare_lane_observations": 0,
+    "rare_logical_counters": 0,
+    "macro_and_plane_histograms_match_global": true
+  }
+}

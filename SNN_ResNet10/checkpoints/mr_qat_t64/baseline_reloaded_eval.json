@@ -1,0 +1,50 @@
+{
+  "status": "complete",
+  "model": "explicit SNNResNet10 (not official FX/IMC)",
+  "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\mr_qat_t64\\baseline.pt",
+  "checkpoint_sha256": "5ff444f6bc5408118a0e989dfd8def786ba8a4affd58695ffd74d6d1181b6c12",
+  "training_steps": 64,
+  "leakage": 0.99,
+  "hidden_bn_fused": true,
+  "threshold_source": "checkpoint",
+  "threshold_sha256": null,
+  "if_thresholds": {
+    "stem.2": 1.634792685508728,
+    "layer1.lif1": 2.6899750232696533,
+    "layer1.lif_out": 3.610969305038452,
+    "layer2.lif1": 4.080644130706787,
+    "layer2.lif_out": 5.65211820602417,
+    "layer3.lif1": 5.65211820602417,
+    "layer3.lif_out": 5.65211820602417,
+    "layer4.lif1": 5.65211820602417,
+    "layer4.lif_out": 5.65211820602417
+  },
+  "hard_reset": true,
+  "normalization": {
+    "mean": [
+      0.286
+    ],
+    "std": [
+      0.353
+    ]
+  },
+  "dataset": "FashionMNIST",
+  "split": "test",
+  "subset": "first N, unshuffled",
+  "samples": 128,
+  "batch_size": 32,
+  "device": "cpu",
+  "results": [
+    {
+      "steps": 16,
+      "correct": 113,
+      "accuracy": 0.8828125
+    },
+    {
+      "steps": 64,
+      "correct": 114,
+      "accuracy": 0.890625
+    }
+  ],
+  "seconds": 16.207761400029995
+}

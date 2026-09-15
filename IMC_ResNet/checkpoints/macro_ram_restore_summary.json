@@ -1,0 +1,184 @@
+{
+  "macro_ram_restore_p1": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      64,
+      115
+    ],
+    "period": 1,
+    "cancel_mode": "full",
+    "ram_access": {
+      "baseline": {
+        "macro_state_records_read": 205520896,
+        "macro_state_records_written": 205520896,
+        "remapped_read_records": 0
+      },
+      "fixed_all": {
+        "macro_state_records_read": 205520896,
+        "macro_state_records_written": 205520896,
+        "remapped_read_records": 202309632
+      }
+    },
+    "variants": {
+      "baseline": {
+        "max_mr": 33,
+        "plane_max": [
+          28,
+          31,
+          33,
+          25,
+          25
+        ],
+        "over_limit_fold_observations": 3,
+        "max_global_integer_error": 0
+      },
+      "fixed_all": {
+        "max_mr": 24,
+        "plane_max": [
+          24,
+          22,
+          23,
+          19,
+          17
+        ],
+        "over_limit_fold_observations": 0,
+        "max_global_integer_error": 0
+      }
+    }
+  },
+  "macro_ram_restore_p16": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      64,
+      115,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135
+    ],
+    "period": 16,
+    "cancel_mode": "full",
+    "ram_access": {
+      "baseline": {
+        "macro_state_records_read": 411041792,
+        "macro_state_records_written": 411041792,
+        "remapped_read_records": 0
+      },
+      "fixed_active": {
+        "macro_state_records_read": 411041792,
+        "macro_state_records_written": 411041792,
+        "remapped_read_records": 9633792
+      },
+      "fixed_all": {
+        "macro_state_records_read": 411041792,
+        "macro_state_records_written": 411041792,
+        "remapped_read_records": 19267584
+      }
+    },
+    "variants": {
+      "baseline": {
+        "max_mr": 33,
+        "plane_max": [
+          28,
+          31,
+          33,
+          25,
+          25
+        ],
+        "over_limit_fold_observations": 3,
+        "max_global_integer_error": 0
+      },
+      "fixed_active": {
+        "max_mr": 24,
+        "plane_max": [
+          23,
+          23,
+          24,
+          15,
+          15
+        ],
+        "over_limit_fold_observations": 0,
+        "max_global_integer_error": 0
+      },
+      "fixed_all": {
+        "max_mr": 19,
+        "plane_max": [
+          19,
+          18,
+          16,
+          12,
+          14
+        ],
+        "over_limit_fold_observations": 0,
+        "max_global_integer_error": 0
+      }
+    }
+  },
+  "macro_ram_restore_plain_p16": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      64,
+      115
+    ],
+    "period": 16,
+    "cancel_mode": "none",
+    "ram_access": {
+      "baseline": {
+        "macro_state_records_read": 205520896,
+        "macro_state_records_written": 205520896,
+        "remapped_read_records": 0
+      },
+      "fixed_all": {
+        "macro_state_records_read": 205520896,
+        "macro_state_records_written": 205520896,
+        "remapped_read_records": 9633792
+      }
+    },
+    "variants": {
+      "baseline": {
+        "max_mr": 66,
+        "plane_max": [
+          64,
+          66,
+          61,
+          60,
+          64
+        ],
+        "over_limit_fold_observations": 1019757,
+        "max_global_integer_error": 0
+      },
+      "fixed_all": {
+        "max_mr": 33,
+        "plane_max": [
+          32,
+          33,
+          30,
+          30,
+          32
+        ],
+        "over_limit_fold_observations": 162,
+        "max_global_integer_error": 0
+      }
+    }
+  },
+  "tests_passed": 78
+}

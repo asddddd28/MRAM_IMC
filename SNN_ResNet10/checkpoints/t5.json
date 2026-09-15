@@ -1,0 +1,17 @@
+{
+  "accuracy": 0.095,
+  "correct": 95,
+  "samples": 1000,
+  "steps": 8,
+  "encoding": "rate",
+  "threshold": 5.0,
+  "mean_abs_output": 5.864730529785156,
+  "forward_seconds": 4.371458500012523,
+  "samples_per_second": 228.75660377357704,
+  "weight_transfer": {
+    "copied_tensors": 74,
+    "source_tensors": 74,
+    "tensor_ratio": 1.0
+  },
+  "device": "cpu"
+}

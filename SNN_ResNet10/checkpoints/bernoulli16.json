@@ -1,0 +1,16 @@
+{
+  "accuracy": 0.097,
+  "correct": 194,
+  "samples": 2000,
+  "steps": 16,
+  "encoding": "bernoulli",
+  "mean_abs_output": 19.990184143066408,
+  "forward_seconds": 18.117463499918813,
+  "samples_per_second": 110.39072881305721,
+  "weight_transfer": {
+    "copied_tensors": 74,
+    "source_tensors": 74,
+    "tensor_ratio": 1.0
+  },
+  "device": "cpu"
+}

@@ -1,0 +1,39 @@
+# Python and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Downloaded datasets
+**/data/
+
+# Model weights: retain locally, do not store in Git history
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+
+# Reproducible temporary output
+*.log
+*.tmp
+*.bak
+build/
+dist/
+*.egg-info/
+
+# Local credentials/configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key

@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-13",
+  "checkpoint": "SNN_ResNet10/checkpoints/mr_qat_t64/baseline.pt",
+  "layer": "layer1.conv1.weight",
+  "training_subset": "first 64 FashionMNIST training samples",
+  "batch_size": 2,
+  "steps": 64,
+  "seed": 20260913,
+  "positions": 64,
+  "target": 56,
+  "isolated_mr_loss_gradients_first_batch": {
+    "overflow": {"loss": 0.000007487089533242397, "gradient_norm": 0.00125127995852381},
+    "peak": {"loss": 0.005859375, "gradient_norm": 0.841852605342865},
+    "quiet": {"loss": 0.000007302459380298387, "gradient_norm": 0.0012082121102139354}
+  },
+  "classification_only_first_three_gradient_norms_from_lr1e3_history": [145113040.0, 587603968.0, 617569664.0],
+  "conclusion": "MR surrogate gradients are nonzero; long-window classification gradients dominate before clipping. Retry with IF detach_reset=True, preserving forward hard-reset semantics."
+}

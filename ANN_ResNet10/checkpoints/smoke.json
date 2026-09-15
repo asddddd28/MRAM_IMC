@@ -1,0 +1,15 @@
+{
+  "device": "cpu",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8379772810459137,
+      "train_acc": 0.7144,
+      "test": {
+        "loss": 0.5147976245880127,
+        "acc": 0.8105,
+        "samples": 2000
+      }
+    }
+  ]
+}

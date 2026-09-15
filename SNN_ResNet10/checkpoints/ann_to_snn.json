@@ -1,0 +1,12 @@
+{
+  "accuracy": 0.097,
+  "correct": 194,
+  "samples": 2000,
+  "steps": 8,
+  "mean_abs_output": 19.986053161621093,
+  "weight_transfer": {
+    "copied_tensors": 74,
+    "source_tensors": 74
+  },
+  "device": "cpu"
+}

@@ -1,0 +1,260 @@
+{
+  "status": "complete",
+  "matched_trials": {
+    "status": "complete",
+    "baseline_accuracy": {
+      "16": 0.6953125,
+      "64": 0.93359375
+    },
+    "baseline_mr": {
+      "minimum": -363,
+      "maximum": 220,
+      "outside_9bit": 2560,
+      "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+    },
+    "cases": [
+      {
+        "name": "mt_control",
+        "kd": 0.0,
+        "rho": 0.0,
+        "stem": false,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.734375,
+          "64": 0.9453125
+        },
+        "mr": {
+          "minimum": -363,
+          "maximum": 220,
+          "outside_9bit": 2693,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2\\mt_control.pt",
+        "seconds": 132.42486339999596,
+        "validation_no_drop": true,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "mt_mr_low",
+        "kd": 0.0,
+        "rho": 0.1,
+        "stem": false,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.75,
+          "64": 0.92578125
+        },
+        "mr": {
+          "minimum": -345,
+          "maximum": 216,
+          "outside_9bit": 1785,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2\\mt_mr_low.pt",
+        "seconds": 195.97554190002847,
+        "validation_no_drop": false,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "mt_mr_high",
+        "kd": 0.0,
+        "rho": 0.5,
+        "stem": false,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.7109375,
+          "64": 0.93359375
+        },
+        "mr": {
+          "minimum": -337,
+          "maximum": 206,
+          "outside_9bit": 1358,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2\\mt_mr_high.pt",
+        "seconds": 205.13810919999378,
+        "validation_no_drop": true,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "kd_control",
+        "kd": 1.0,
+        "rho": 0.0,
+        "stem": false,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.7109375,
+          "64": 0.9375
+        },
+        "mr": {
+          "minimum": -362,
+          "maximum": 214,
+          "outside_9bit": 2601,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2\\kd_control.pt",
+        "seconds": 222.60526009998284,
+        "validation_no_drop": true,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "kd_mr",
+        "kd": 1.0,
+        "rho": 0.3,
+        "stem": false,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.72265625,
+          "64": 0.9453125
+        },
+        "mr": {
+          "minimum": -332,
+          "maximum": 212,
+          "outside_9bit": 1351,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2\\kd_mr.pt",
+        "seconds": 306.04320330003975,
+        "validation_no_drop": true,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "stem_kd_control",
+        "kd": 1.0,
+        "rho": 0.0,
+        "stem": true,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.78125,
+          "64": 0.9296875
+        },
+        "mr": {
+          "minimum": -396,
+          "maximum": 223,
+          "outside_9bit": 6075,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2_stem\\stem_kd_control.pt",
+        "seconds": 244.95096999994712,
+        "validation_no_drop": false,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "stem_kd_mr",
+        "kd": 1.0,
+        "rho": 0.3,
+        "stem": true,
+        "rate": 0.0,
+        "accuracy": {
+          "16": 0.6953125,
+          "64": 0.91796875
+        },
+        "mr": {
+          "minimum": -327,
+          "maximum": 224,
+          "outside_9bit": 887,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2_stem\\stem_kd_mr.pt",
+        "seconds": 351.81759419996524,
+        "validation_no_drop": false,
+        "fits_9bit_stress": false
+      },
+      {
+        "name": "stem_kd_mr_rate",
+        "kd": 1.0,
+        "rho": 0.3,
+        "stem": true,
+        "rate": 0.2,
+        "accuracy": {
+          "16": 0.6953125,
+          "64": 0.921875
+        },
+        "mr": {
+          "minimum": -348,
+          "maximum": 227,
+          "outside_9bit": 1129,
+          "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+        },
+        "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2_rate\\stem_kd_mr_rate.pt",
+        "seconds": 342.04278799996246,
+        "validation_no_drop": false,
+        "fits_9bit_stress": false
+      }
+    ],
+    "validation_indices": [
+      59000,
+      59256
+    ],
+    "training": "same first64 train, one epoch, seed20260914, lr0.0005; all multi-window T16/T64; grad ratio is regularizer/task norm; fixed BN; detached proxy reset"
+  },
+  "refinement": {
+    "name": "kd_mr",
+    "kd": 1.0,
+    "rho": 0.6,
+    "stem": false,
+    "rate": 0.0,
+    "accuracy": {
+      "16": 0.71875,
+      "64": 0.94140625
+    },
+    "mr": {
+      "minimum": -331,
+      "maximum": 212,
+      "outside_9bit": 1253,
+      "scope": "first layer full spatial; diagnostic test indices 0,1,2,3,4,5,64,115"
+    },
+    "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v3_refine\\kd_mr.pt",
+    "seconds": 426.26929590001237
+  },
+  "holdout": {
+    "baseline": {
+      "test_range": [
+        128,
+        1152
+      ],
+      "samples": 1024,
+      "correct": {
+        "16": 741,
+        "64": 944
+      },
+      "accuracy": {
+        "16": 0.7236328125,
+        "64": 0.921875
+      }
+    },
+    "mt_mr_high": {
+      "test_range": [
+        128,
+        1152
+      ],
+      "samples": 1024,
+      "correct": {
+        "16": 763,
+        "64": 945
+      },
+      "accuracy": {
+        "16": 0.7451171875,
+        "64": 0.9228515625
+      }
+    },
+    "kd_mr": {
+      "test_range": [
+        128,
+        1152
+      ],
+      "samples": 1024,
+      "correct": {
+        "16": 756,
+        "64": 951
+      },
+      "accuracy": {
+        "16": 0.73828125,
+        "64": 0.9287109375
+      }
+    }
+  },
+  "recommended_checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\shared_mr_sweep_v2\\kd_mr.pt",
+  "achieved_9bit": false,
+  "tests": "71 passed"
+}

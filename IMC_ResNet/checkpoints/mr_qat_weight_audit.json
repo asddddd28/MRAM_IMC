@@ -1,0 +1,44 @@
+[
+  {
+    "run": "mr_qat_t64",
+    "alpha": 0.1,
+    "all_model_tensors_identical_to_control": true,
+    "changed_int5_weights": 0,
+    "changed_bit_planes": 0
+  },
+  {
+    "run": "mr_qat_t64",
+    "alpha": 1.0,
+    "all_model_tensors_identical_to_control": true,
+    "changed_int5_weights": 0,
+    "changed_bit_planes": 0
+  },
+  {
+    "run": "mr_qat_t64_lr2e4",
+    "alpha": 10.0,
+    "all_model_tensors_identical_to_control": true,
+    "changed_int5_weights": 0,
+    "changed_bit_planes": 0
+  },
+  {
+    "run": "mr_qat_t64_lr1e3",
+    "alpha": 100.0,
+    "all_model_tensors_identical_to_control": true,
+    "changed_int5_weights": 0,
+    "changed_bit_planes": 0
+  },
+  {
+    "run": "mr_qat_t64_stable",
+    "alpha": 10.0,
+    "all_model_tensors_identical_to_control": true,
+    "changed_int5_weights": 0,
+    "changed_bit_planes": 0
+  },
+  {
+    "run": "mr_qat_t64_balanced",
+    "alpha": 10.0,
+    "all_model_tensors_identical_to_control": false,
+    "changed_int5_weights": 1176,
+    "changed_bit_planes": 2379
+  }
+]

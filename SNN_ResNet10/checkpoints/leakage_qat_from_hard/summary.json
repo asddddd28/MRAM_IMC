@@ -1,0 +1,34 @@
+[
+  {
+    "leakage": 0.99,
+    "before_accuracy": 0.705,
+    "after_accuracy": 0.858,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 1.4644662036171443,
+        "train_accuracy": 0.8592,
+        "test_accuracy": 0.858
+      }
+    ],
+    "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\leakage_qat_from_hard\\leakage_0.990_qat.pt",
+    "seconds": 386.0762615999556,
+    "quantization": "int5 STE"
+  },
+  {
+    "leakage": 0.97,
+    "before_accuracy": 0.705,
+    "after_accuracy": 0.849,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 1.4956848681727541,
+        "train_accuracy": 0.8618,
+        "test_accuracy": 0.849
+      }
+    ],
+    "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\leakage_qat_from_hard\\leakage_0.970_qat.pt",
+    "seconds": 392.1187920999946,
+    "quantization": "int5 STE"
+  }
+]

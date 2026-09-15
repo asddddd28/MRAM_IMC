@@ -1,0 +1,26 @@
+{
+  "max_mr": 40,
+  "max_required_bits": 6,
+  "mean_observed_bits": 0.5755292911857205,
+  "mean_logical_peak_bits": 0.9170412685694043,
+  "over_limit_fold_observations": 0,
+  "logical_mrs_over_limit": 0,
+  "observed_bits_histogram": {
+    "0": 16645634781,
+    "1": 2322166035,
+    "2": 2189131394,
+    "3": 1535562224,
+    "4": 468060497,
+    "5": 33919828,
+    "6": 26361
+  },
+  "logical_peak_bits_histogram": {
+    "0": 181099948,
+    "1": 35218331,
+    "2": 36279679,
+    "3": 36942384,
+    "4": 13818169,
+    "5": 1053910,
+    "6": 2299
+  }
+}

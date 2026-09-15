@@ -1,0 +1,28 @@
+{
+  "command": [
+    "C:\\Users\\asddddd28\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "D:\\Projects\\ai\\MRAM_IMC\\model_imc_cluster\\tests",
+    "--junitxml=D:\\Projects\\ai\\MRAM_IMC\\model_imc_cluster\\reports\\acceptance\\junit.xml"
+  ],
+  "exit_code": 0,
+  "timestamp_utc": "2026-09-11T10:25:53.511917+00:00",
+  "python": "3.13.13",
+  "tested_scope": "T01-T13 normalized behavior, mapping, APIs and CLI",
+  "not_implemented": [
+    "T14/P4 PyTorch gradient wrapper and training",
+    "P5 calibration/multi-chip characterization",
+    "arbitrary switch-event topology",
+    "state/weight memory fault models",
+    "three-mode controller"
+  ],
+  "calibrated": false,
+  "tests": 136,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 4.547,
+  "passed": 136
+}

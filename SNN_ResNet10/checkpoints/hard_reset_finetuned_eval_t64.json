@@ -1,0 +1,47 @@
+{
+  "status": "complete",
+  "model": "explicit SNNResNet10 (not official FX/IMC)",
+  "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\hard_reset_finetuned.pt",
+  "checkpoint_sha256": "b5ba28de147118396d466a5b37e120a45fd7006b8e50140c361e6c4a81024c0f",
+  "training_steps": 16,
+  "hard_reset": true,
+  "threshold_source": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\calibrated.json",
+  "if_thresholds": {
+    "stem.2": 1.634792685508728,
+    "layer1.lif1": 2.6899750232696533,
+    "layer1.lif_out": 3.610969305038452,
+    "layer2.lif1": 4.080644130706787,
+    "layer2.lif_out": 5.65211820602417,
+    "layer3.lif1": 5.65211820602417,
+    "layer3.lif_out": 5.65211820602417,
+    "layer4.lif1": 5.65211820602417,
+    "layer4.lif_out": 5.65211820602417
+  },
+  "normalization": {
+    "mean": [
+      0.286
+    ],
+    "std": [
+      0.353
+    ]
+  },
+  "dataset": "FashionMNIST",
+  "split": "test",
+  "subset": "first N, unshuffled",
+  "samples": 2000,
+  "batch_size": 64,
+  "device": "cpu",
+  "results": [
+    {
+      "steps": 16,
+      "correct": 1491,
+      "accuracy": 0.7455
+    },
+    {
+      "steps": 64,
+      "correct": 1835,
+      "accuracy": 0.9175
+    }
+  ],
+  "seconds": 120.88527329999488
+}

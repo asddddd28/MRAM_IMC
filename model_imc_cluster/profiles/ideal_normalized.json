@@ -1,0 +1,15 @@
+{
+  "num_macros": 16,
+  "inputs_per_macro": 36,
+  "weight_bits": 5,
+  "scu_bits": 4,
+  "mr_bits": 8,
+  "overflow_policy": "error",
+  "mode": "ideal_behavioral",
+  "backend": "numpy",
+  "theta_count": 560,
+  "leak_mode": "none",
+  "bias": 0,
+  "reset_mode": "hard_zero",
+  "units": "normalized"
+}

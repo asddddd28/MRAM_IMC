@@ -1,0 +1,1332 @@
+{
+  "source_status": "complete",
+  "samples": 128,
+  "steps": [
+    16,
+    64
+  ],
+  "definition": "all padded lanes included; 0 = zero significant bits, NOT a zero-bit physical MR",
+  "global": {
+    "observed_bits_histogram": {
+      "total": 92778004480,
+      "nonzero": 20530415634,
+      "mean_bits_including_zero": 0.39697722231069915,
+      "mean_bits_nonzero": 1.7939604909413205,
+      "rows": [
+        {
+          "bits": 0,
+          "min_value": 0,
+          "max_value": 0,
+          "count": 72247588846,
+          "percent_all": 77.87146236969808,
+          "percent_nonzero": null
+        },
+        {
+          "bits": 1,
+          "min_value": 1,
+          "max_value": 1,
+          "count": 9874451681,
+          "percent_all": 10.64309556596318,
+          "percent_nonzero": 48.0966964187862
+        },
+        {
+          "bits": 2,
+          "min_value": 2,
+          "max_value": 3,
+          "count": 6583110688,
+          "percent_all": 7.095551068269754,
+          "percent_nonzero": 32.065160322900844
+        },
+        {
+          "bits": 3,
+          "min_value": 4,
+          "max_value": 7,
+          "count": 2782974449,
+          "percent_all": 2.999605849034963,
+          "percent_nonzero": 13.555373152753777
+        },
+        {
+          "bits": 4,
+          "min_value": 8,
+          "max_value": 15,
+          "count": 1013988591,
+          "percent_all": 1.0929191640660734,
+          "percent_nonzero": 4.938957929915234
+        },
+        {
+          "bits": 5,
+          "min_value": 16,
+          "max_value": 31,
+          "count": 270137618,
+          "percent_all": 0.29116558338806814,
+          "percent_nonzero": 1.3157922509500033
+        },
+        {
+          "bits": 6,
+          "min_value": 32,
+          "max_value": 63,
+          "count": 5752597,
+          "percent_all": 0.006200388801464336,
+          "percent_nonzero": 0.028019875985721605
+        },
+        {
+          "bits": 7,
+          "min_value": 64,
+          "max_value": 127,
+          "count": 10,
+          "percent_all": 1.0778416776743332e-08,
+          "percent_nonzero": 4.870821993218299e-08
+        }
+      ]
+    },
+    "logical_peak_bits_histogram": {
+      "total": 1217658880,
+      "nonzero": 463479345,
+      "mean_bits_including_zero": 0.8012257110957052,
+      "mean_bits_nonzero": 2.104990465109076,
+      "rows": [
+        {
+          "bits": 0,
+          "min_value": 0,
+          "max_value": 0,
+          "count": 754179535,
+          "percent_all": 61.93684843820956,
+          "percent_nonzero": null
+        },
+        {
+          "bits": 1,
+          "min_value": 1,
+          "max_value": 1,
+          "count": 167037961,
+          "percent_all": 13.717960238585047,
+          "percent_nonzero": 36.0400010921738
+        },
+        {
+          "bits": 2,
+          "min_value": 2,
+          "max_value": 3,
+          "count": 154301523,
+          "percent_all": 12.671982731321272,
+          "percent_nonzero": 33.291995568864024
+        },
+        {
+          "bits": 3,
+          "min_value": 4,
+          "max_value": 7,
+          "count": 87626566,
+          "percent_all": 7.196314783989421,
+          "percent_nonzero": 18.906250504000347
+        },
+        {
+          "bits": 4,
+          "min_value": 8,
+          "max_value": 15,
+          "count": 36311816,
+          "percent_all": 2.9821008655560415,
+          "percent_nonzero": 7.834613643893882
+        },
+        {
+          "bits": 5,
+          "min_value": 16,
+          "max_value": 31,
+          "count": 17357248,
+          "percent_all": 1.425460634755113,
+          "percent_nonzero": 3.7449884632938715
+        },
+        {
+          "bits": 6,
+          "min_value": 32,
+          "max_value": 63,
+          "count": 844224,
+          "percent_all": 0.06933173270990312,
+          "percent_nonzero": 0.18214921745865503
+        },
+        {
+          "bits": 7,
+          "min_value": 64,
+          "max_value": 127,
+          "count": 7,
+          "percent_all": 5.748736460575888e-07,
+          "percent_nonzero": 1.5103154165370627e-06
+        }
+      ]
+    }
+  },
+  "by_layer": {
+    "layer1.conv1": {
+      "observed_bits_histogram": {
+        "total": 16441671680,
+        "nonzero": 4489961406,
+        "mean_bits_including_zero": 0.6965383547909406,
+        "mean_bits_nonzero": 2.550635496932376,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 11951710274,
+            "percent_all": 72.69157605511802,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 1154545977,
+            "percent_all": 7.022071717953195,
+            "percent_nonzero": 25.71393988948688
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 1108945625,
+            "percent_all": 6.7447255156478105,
+            "percent_nonzero": 24.698333119703435
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 1105341577,
+            "percent_all": 6.722805311485213,
+            "percent_nonzero": 24.61806410012603
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 847600749,
+            "percent_all": 5.155198117908166,
+            "percent_nonzero": 18.87768451344234
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 267774890,
+            "percent_all": 1.6286354283897244,
+            "percent_nonzero": 5.963857275970536
+          },
+          {
+            "bits": 6,
+            "min_value": 32,
+            "max_value": 63,
+            "count": 5752578,
+            "percent_all": 0.03498779267680888,
+            "percent_nonzero": 0.12812087855171198
+          },
+          {
+            "bits": 7,
+            "min_value": 64,
+            "max_value": 127,
+            "count": 10,
+            "percent_all": 6.082106609733737e-08,
+            "percent_nonzero": 2.2271906361236995e-07
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 256901120,
+        "nonzero": 101936024,
+        "mean_bits_including_zero": 1.1869166043339943,
+        "mean_bits_nonzero": 2.991289958493967,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 154965096,
+            "percent_all": 60.32091101821588,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 21037329,
+            "percent_all": 8.188881776770767,
+            "percent_nonzero": 20.63777669021111
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 18881616,
+            "percent_all": 7.349760094467475,
+            "percent_nonzero": 18.523006155311688
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 20650275,
+            "percent_all": 8.038219140500438,
+            "percent_nonzero": 20.258073828737913
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 23509428,
+            "percent_all": 9.151158235511001,
+            "percent_nonzero": 23.062924251391244
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 17013156,
+            "percent_all": 6.622453027841996,
+            "percent_nonzero": 16.69003295635702
+          },
+          {
+            "bits": 6,
+            "min_value": 32,
+            "max_value": 63,
+            "count": 844213,
+            "percent_all": 0.32861398190868146,
+            "percent_nonzero": 0.8281792509388045
+          },
+          {
+            "bits": 7,
+            "min_value": 64,
+            "max_value": 127,
+            "count": 7,
+            "percent_all": 2.7247837611607143e-06,
+            "percent_nonzero": 6.867052220910637e-06
+          }
+        ]
+      }
+    },
+    "layer1.conv2": {
+      "observed_bits_histogram": {
+        "total": 16441671680,
+        "nonzero": 3172081127,
+        "mean_bits_including_zero": 0.3666923461519942,
+        "mean_bits_nonzero": 1.900656043025598,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 13269590553,
+            "percent_all": 80.70706441086166,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 1243021208,
+            "percent_all": 7.560187505216015,
+            "percent_nonzero": 39.18629941143999
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 1122946777,
+            "percent_all": 6.829882014770897,
+            "percent_nonzero": 35.40094758112408
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 686540867,
+            "percent_all": 4.17561474503303,
+            "percent_nonzero": 21.64323166757393
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 117363594,
+            "percent_all": 0.7138178908095067,
+            "percent_nonzero": 3.6998925721359712
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 2208662,
+            "percent_all": 0.013433317748867735,
+            "percent_nonzero": 0.0696281687501746
+          },
+          {
+            "bits": 6,
+            "min_value": 32,
+            "max_value": 63,
+            "count": 19,
+            "percent_all": 1.15560025584941e-07,
+            "percent_nonzero": 5.989758533688348e-07
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 256901120,
+        "nonzero": 88016480,
+        "mean_bits_including_zero": 0.7551283855827488,
+        "mean_bits_nonzero": 2.204056876621287,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 168884640,
+            "percent_all": 65.73916065449617,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 27079609,
+            "percent_all": 10.540868408825933,
+            "percent_nonzero": 30.766521224207104
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 25260301,
+            "percent_all": 9.832693995261678,
+            "percent_nonzero": 28.699512863954567
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 26631868,
+            "percent_all": 10.36658306511081,
+            "percent_nonzero": 30.25781989918252
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 8726008,
+            "percent_all": 3.396640699736926,
+            "percent_nonzero": 9.914061548473649
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 318683,
+            "percent_all": 0.1240488947654257,
+            "percent_nonzero": 0.362071966522633
+          },
+          {
+            "bits": 6,
+            "min_value": 32,
+            "max_value": 63,
+            "count": 11,
+            "percent_all": 4.281803053252551e-06,
+            "percent_nonzero": 1.2497659529215438e-05
+          }
+        ]
+      }
+    },
+    "layer2.conv1": {
+      "observed_bits_histogram": {
+        "total": 8220835840,
+        "nonzero": 1954456809,
+        "mean_bits_including_zero": 0.4340161582645105,
+        "mean_bits_nonzero": 1.825558678283384,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 6266379031,
+            "percent_all": 76.22557064708398,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 785008018,
+            "percent_all": 9.54900490994356,
+            "percent_nonzero": 40.165022546681406
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 759368946,
+            "percent_all": 9.237125771386284,
+            "percent_nonzero": 38.8531965763179
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 376239779,
+            "percent_all": 4.576660893401321,
+            "percent_nonzero": 19.25035013654272
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 33689988,
+            "percent_all": 0.4098121973933006,
+            "percent_nonzero": 1.72375198289685
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 150078,
+            "percent_all": 0.0018255807915512397,
+            "percent_nonzero": 0.007678757561124494
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 128450560,
+        "nonzero": 51591359,
+        "mean_bits_including_zero": 0.8996510408362564,
+        "mean_bits_nonzero": 2.239923162326466,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 76859201,
+            "percent_all": 59.83562936588209,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 12569929,
+            "percent_all": 9.785810976612325,
+            "percent_nonzero": 24.364407613298187
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 17481164,
+            "percent_all": 13.609254798110651,
+            "percent_nonzero": 33.88389904596233
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 18157639,
+            "percent_all": 14.135897110919563,
+            "percent_nonzero": 35.19511668611017
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 3357629,
+            "percent_all": 2.613946564343511,
+            "percent_nonzero": 6.508122804053291
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 24998,
+            "percent_all": 0.019461184131855866,
+            "percent_nonzero": 0.048453850576023784
+          }
+        ]
+      }
+    },
+    "layer2.conv2": {
+      "observed_bits_histogram": {
+        "total": 8220835840,
+        "nonzero": 2173972366,
+        "mean_bits_including_zero": 0.3594369232654572,
+        "mean_bits_nonzero": 1.3592040024118688,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 6046863474,
+            "percent_all": 73.55533660674581,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 1454457523,
+            "percent_all": 17.692331428430517,
+            "percent_nonzero": 66.90322037883715
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 658514886,
+            "percent_all": 8.010315481497317,
+            "percent_nonzero": 30.290858168157598
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 60615182,
+            "percent_all": 0.7373359981848269,
+            "percent_nonzero": 2.7882222859865
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 384775,
+            "percent_all": 0.004680485141520597,
+            "percent_nonzero": 0.01769916701875869
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 128450560,
+        "nonzero": 75394427,
+        "mean_bits_including_zero": 0.9327193201804648,
+        "mean_bits_nonzero": 1.5890872013656925,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 53056133,
+            "percent_all": 41.30471132239517,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 36964494,
+            "percent_all": 28.777215140206472,
+            "percent_nonzero": 49.028151643091604
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 32510588,
+            "percent_all": 25.30980635662468,
+            "percent_nonzero": 43.12067787185384
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 5854731,
+            "percent_all": 4.557964558504065,
+            "percent_nonzero": 7.765469190448254
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 64614,
+            "percent_all": 0.05030262226961097,
+            "percent_nonzero": 0.08570129460629762
+          }
+        ]
+      }
+    },
+    "layer2.downsample.0": {
+      "observed_bits_histogram": {
+        "total": 8220835840,
+        "nonzero": 265143080,
+        "mean_bits_including_zero": 0.05479174536101672,
+        "mean_bits_nonzero": 1.6988334902046096,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 7955692760,
+            "percent_all": 96.77474304121368,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 113473716,
+            "percent_all": 1.380318476229298,
+            "percent_nonzero": 42.79716295066045
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 118813808,
+            "percent_all": 1.4452764939288705,
+            "percent_nonzero": 44.81120457678926
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 32089612,
+            "percent_all": 0.3903448824979821,
+            "percent_nonzero": 12.10275297397918
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 765944,
+            "percent_all": 0.009317106130171796,
+            "percent_nonzero": 0.2888794985711111
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 128450560,
+        "nonzero": 7015708,
+        "mean_bits_including_zero": 0.11727406248754385,
+        "mean_bits_nonzero": 2.1471701786904474,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 121434852,
+            "percent_all": 94.53820364815849,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 1420370,
+            "percent_all": 1.105771745954241,
+            "percent_nonzero": 20.245568943291254
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 3252395,
+            "percent_all": 2.5320208802515145,
+            "percent_nonzero": 46.358756664330954
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 2233013,
+            "percent_all": 1.7384221602459342,
+            "percent_nonzero": 31.828761972419606
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 109930,
+            "percent_all": 0.08558156538982781,
+            "percent_nonzero": 1.5669124199581852
+          }
+        ]
+      }
+    },
+    "layer3.conv1": {
+      "observed_bits_histogram": {
+        "total": 4110417920,
+        "nonzero": 897229232,
+        "mean_bits_including_zero": 0.2872885275860222,
+        "mean_bits_nonzero": 1.3161362446559253,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 3213188688,
+            "percent_all": 78.1718246304259,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 632197030,
+            "percent_all": 15.38035893926815,
+            "percent_nonzero": 70.46103798811583
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 246444635,
+            "percent_all": 5.995610173867673,
+            "percent_nonzero": 27.46729890316369
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 18560656,
+            "percent_all": 0.4515515541543766,
+            "percent_nonzero": 2.0686637637325664
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 26911,
+            "percent_all": 0.0006547022838981785,
+            "percent_nonzero": 0.002999344987903827
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 64225280,
+        "nonzero": 33436399,
+        "mean_bits_including_zero": 0.7842915904765226,
+        "mean_bits_nonzero": 1.5064824115778737,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 30788881,
+            "percent_all": 47.9388816989198,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 18471112,
+            "percent_all": 28.759877730389032,
+            "percent_nonzero": 55.242527761437465
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 13001683,
+            "percent_all": 20.24387126066247,
+            "percent_nonzero": 38.88481830833518
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 1957547,
+            "percent_all": 3.0479384441764985,
+            "percent_nonzero": 5.854538941229886
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 6057,
+            "percent_all": 0.009430865852200255,
+            "percent_nonzero": 0.018114988997469494
+          }
+        ]
+      }
+    },
+    "layer3.conv2": {
+      "observed_bits_histogram": {
+        "total": 8220835840,
+        "nonzero": 2291637173,
+        "mean_bits_including_zero": 0.37172790230536945,
+        "mean_bits_nonzero": 1.3335069346948494,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 5929198667,
+            "percent_all": 72.12403680597033,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 1575898385,
+            "percent_all": 19.169563967354442,
+            "percent_nonzero": 68.76736001524095
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 667362605,
+            "percent_all": 8.11794102191925,
+            "percent_nonzero": 29.121652103694515
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 48214265,
+            "percent_all": 0.586488599679908,
+            "percent_nonzero": 2.103922277403204
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 161918,
+            "percent_all": 0.0019696050760697344,
+            "percent_nonzero": 0.0070656036613349175
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 64225280,
+        "nonzero": 43554693,
+        "mean_bits_including_zero": 1.0589719811264349,
+        "mean_bits_nonzero": 1.5615486487300003,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 20670587,
+            "percent_all": 32.18450273786272,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 21872624,
+            "percent_all": 34.05609753667092,
+            "percent_nonzero": 50.21875369434931
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 18922953,
+            "percent_all": 29.463402884347097,
+            "percent_nonzero": 43.4464157513405
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 2742222,
+            "percent_all": 4.269692557198661,
+            "percent_nonzero": 6.29604254127104
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 16894,
+            "percent_all": 0.02630428392059949,
+            "percent_nonzero": 0.038788013039145974
+          }
+        ]
+      }
+    },
+    "layer3.downsample.0": {
+      "observed_bits_histogram": {
+        "total": 4110417920,
+        "nonzero": 114563245,
+        "mean_bits_including_zero": 0.034344708189672356,
+        "mean_bits_nonzero": 1.232254760241821,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 3995854675,
+            "percent_all": 97.21285652141182,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 88558717,
+            "percent_all": 2.154494232060958,
+            "percent_nonzero": 77.30115972186367
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 25401206,
+            "percent_all": 0.6179713716312331,
+            "percent_nonzero": 22.172212388013275
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 603313,
+            "percent_all": 0.014677655940153161,
+            "percent_nonzero": 0.5266200342003231
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 9,
+            "percent_all": 2.1895583795041455e-07,
+            "percent_nonzero": 7.855922726350846e-06
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 64225280,
+        "nonzero": 4651349,
+        "mean_bits_including_zero": 0.10091135453204719,
+        "mean_bits_nonzero": 1.393372116347322,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 59573931,
+            "percent_all": 92.75775987274793,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 2910736,
+            "percent_all": 4.532072106186225,
+            "percent_nonzero": 62.578318677011765
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 1651520,
+            "percent_all": 2.57144850127551,
+            "percent_nonzero": 35.506258506940675
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 89088,
+            "percent_all": 0.13871173469387754,
+            "percent_nonzero": 1.9153153203511497
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 5,
+            "percent_all": 7.785096460459184e-06,
+            "percent_nonzero": 0.00010749569640979424
+          }
+        ]
+      }
+    },
+    "layer4.conv1": {
+      "observed_bits_histogram": {
+        "total": 5368709120,
+        "nonzero": 1348887526,
+        "mean_bits_including_zero": 0.33261152543127537,
+        "mean_bits_nonzero": 1.323827595392857,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 4019821594,
+            "percent_all": 74.87501192837954,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 947339056,
+            "percent_all": 17.64556497335434,
+            "percent_nonzero": 70.23113771459104
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 366623696,
+            "percent_all": 6.82889848947525,
+            "percent_nonzero": 27.17970838437422
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 34591014,
+            "percent_all": 0.6443078443408012,
+            "percent_nonzero": 2.5644105481927335
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 333760,
+            "percent_all": 0.006216764450073242,
+            "percent_nonzero": 0.024743352842007082
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 41943040,
+        "nonzero": 24903935,
+        "mean_bits_including_zero": 0.9057263374328614,
+        "mean_bits_nonzero": 1.5254182120215138,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 17039105,
+            "percent_all": 40.62439203262329,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 13573815,
+            "percent_all": 32.362496852874756,
+            "percent_nonzero": 54.504699759295065
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 9602697,
+            "percent_all": 22.89461374282837,
+            "percent_nonzero": 38.55895463909619
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 1699985,
+            "percent_all": 4.053080081939697,
+            "percent_nonzero": 6.826170241771029
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 27438,
+            "percent_all": 0.06541728973388672,
+            "percent_nonzero": 0.1101753598377124
+          }
+        ]
+      }
+    },
+    "layer4.conv2": {
+      "observed_bits_histogram": {
+        "total": 10737418240,
+        "nonzero": 3748647814,
+        "mean_bits_including_zero": 0.5708600814454258,
+        "mean_bits_nonzero": 1.6351398571260927,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 6988770426,
+            "percent_all": 65.08799666538835,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 1815171801,
+            "percent_all": 16.90510475076735,
+            "percent_nonzero": 48.422041521769906
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 1499705308,
+            "percent_all": 13.967094086110592,
+            "percent_nonzero": 40.00656723203179
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 420105774,
+            "percent_all": 3.9125399105250835,
+            "percent_nonzero": 11.206861643044709
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 13660943,
+            "percent_all": 0.127227446064353,
+            "percent_nonzero": 0.3644232181263001
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 3988,
+            "percent_all": 3.714114427566528e-05,
+            "percent_nonzero": 0.00010638502729187032
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 41943040,
+        "nonzero": 29386031,
+        "mean_bits_including_zero": 1.4069379329681397,
+        "mean_bits_nonzero": 2.0081396497539936,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 12557009,
+            "percent_all": 29.938242435455322,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 8347022,
+            "percent_all": 19.900851249694824,
+            "percent_nonzero": 28.404727402622015
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 12947430,
+            "percent_all": 30.869078636169434,
+            "percent_nonzero": 44.059811956231854
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 7597355,
+            "percent_all": 18.113505840301514,
+            "percent_nonzero": 25.853627527991105
+          },
+          {
+            "bits": 4,
+            "min_value": 8,
+            "max_value": 15,
+            "count": 493813,
+            "percent_all": 1.1773419380187988,
+            "percent_nonzero": 1.6804344894347931
+          },
+          {
+            "bits": 5,
+            "min_value": 16,
+            "max_value": 31,
+            "count": 411,
+            "percent_all": 0.0009799003601074219,
+            "percent_nonzero": 0.00139862372022952
+          }
+        ]
+      }
+    },
+    "layer4.downsample.0": {
+      "observed_bits_histogram": {
+        "total": 2684354560,
+        "nonzero": 73835856,
+        "mean_bits_including_zero": 0.030906450748443604,
+        "mean_bits_nonzero": 1.123625789616362,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 2610518704,
+            "percent_all": 97.24940001964569,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 64780250,
+            "percent_all": 2.413252368569374,
+            "percent_nonzero": 87.73548992240302
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 8983196,
+            "percent_all": 0.3346501290798187,
+            "percent_nonzero": 12.166441193557775
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 72410,
+            "percent_all": 0.002697482705116272,
+            "percent_nonzero": 0.0980688840392126
+          }
+        ]
+      },
+      "logical_peak_bits_histogram": {
+        "total": 41943040,
+        "nonzero": 3592940,
+        "mean_bits_including_zero": 0.10509018898010254,
+        "mean_bits_nonzero": 1.2267953263900873,
+        "rows": [
+          {
+            "bits": 0,
+            "min_value": 0,
+            "max_value": 0,
+            "count": 38350100,
+            "percent_all": 91.43376350402832,
+            "percent_nonzero": null
+          },
+          {
+            "bits": 1,
+            "min_value": 1,
+            "max_value": 1,
+            "count": 2790921,
+            "percent_all": 6.654074192047119,
+            "percent_nonzero": 77.67791836212128
+          },
+          {
+            "bits": 2,
+            "min_value": 2,
+            "max_value": 3,
+            "count": 789176,
+            "percent_all": 1.8815422058105469,
+            "percent_nonzero": 21.964630636748733
+          },
+          {
+            "bits": 3,
+            "min_value": 4,
+            "max_value": 7,
+            "count": 12843,
+            "percent_all": 0.030620098114013672,
+            "percent_nonzero": 0.35745100112999384
+          }
+        ]
+      }
+    }
+  },
+  "source": "D:\\Projects\\ai\\MRAM_IMC\\IMC_ResNet\\checkpoints\\mr_conditions_t64_n128.json"
+}

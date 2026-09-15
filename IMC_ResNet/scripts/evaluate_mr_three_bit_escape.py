@@ -1,0 +1,149 @@
+"""Read-only trajectory replay of proposed Macro-local bit-pair cancellation."""
+import json
+import sys
+from pathlib import Path
+import torch
+from torch.nn import functional as F
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader, Subset
+from spikingjelly.activation_based import functional
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+from IMC_ResNet.models.finetuned_snn import load_finetuned, fuse_explicit_hidden, make_explicit_quantized_reference
+from IMC_ResNet.models.cluster_backend import MRStats, quantize_int5
+from IMC_ResNet.models.mr_pair_cancel import clear_one_b0_pair, add_carries_with_b0_cancel, add_carries_with_positive_forward, clear_one_b1_pair, clear_one_b2_pair
+
+
+def main():
+    torch.set_num_threads(4)
+    snn = ROOT/'SNN_ResNet10'
+    indices = [0, 1, 2, 3, 4, 5, 64, 115]
+    data = datasets.FashionMNIST(snn/'data', train=False, transform=transforms.Compose([
+        transforms.ToTensor(), transforms.Normalize((.2860,), (.3530,))]))
+    loader = DataLoader(Subset(data, indices), 2)
+    model, meta = load_finetuned(snn/'checkpoints/hard_reset_finetuned.pt', snn/'checkpoints/calibrated.json')
+    model = make_explicit_quantized_reference(fuse_explicit_hidden(model))
+    conv = model.layer1.conv1
+    q, _ = quantize_int5(conv.weight)
+    assert q.flatten(1).shape == (32, 288)
+    flat = F.pad(q.flatten(1), (0, 576-288))
+    bits = (((flat[..., None] & 31) >> torch.arange(5)) & 1).float()
+    packed = bits.reshape(32, 16, 36, 5).permute(1, 2, 0, 3).reshape(16, 36, 160)
+    from IMC_ResNet.models.mr_bit_activity import BitActivity, PairOpportunity
+    from IMC_ResNet.models.mr_b0_escape import B0Escape
+    escape = B0Escape()
+    activity = BitActivity()
+    opportunities = [PairOpportunity(k) for k in range(5)]
+    beta = torch.tensor([1, 2, 4, 8, -16], dtype=torch.int64)
+    incoming = intercepted = forwarded = b0_pairs = b1_pairs = b2_pairs = 0
+    b1_carry_out = b1_no_partner_carry_out = 0
+    b2_carry_out = b2_no_partner_carry_out = 0
+    peak = torch.zeros(5, dtype=torch.int32)
+    with torch.no_grad():
+        for batch, (x, _) in enumerate(loader):
+            functional.reset_net(model)
+            bank = scu = reference = None
+            escape.seen_partner = None
+            for t in range(64):
+                spike = model.stem(x)
+                patches = F.pad(F.unfold(spike, 3, padding=1), (0, 0, 0, 288))
+                b, _, p = patches.shape
+                inp = patches.reshape(b, 16, 36, p).permute(1, 0, 3, 2).reshape(16, b*p, 36)
+                counts = torch.bmm(inp, packed).reshape(16, b, p, 32, 5).permute(1, 3, 2, 0, 4).contiguous().to(torch.int32)
+                # Exclude the eight structurally padded Macros from denominators.
+                assert counts[..., 8:, :].count_nonzero() == 0
+                counts = counts[..., :8, :].contiguous()
+                if scu is None:
+                    scu = torch.zeros_like(counts)
+                    bank = torch.zeros_like(counts)
+                    reference = torch.zeros_like(counts)
+                z = scu + counts
+                carry, scu = z // 16, z % 16
+                reference += carry
+                trace = {}
+                candidate, removed, moved = add_carries_with_positive_forward(bank, carry, trace=trace)
+                pending = trace['incoming_negative_units'] - trace['intercepted_negative_units']
+                # Actual ripple into b2 before the post-update b1 cancellation.
+                b1_events = ((bank[..., 4] & 3) + pending) // 4
+                b1_carry_out += int(b1_events.sum())
+                b1_partner = torch.zeros_like(pending, dtype=torch.bool)
+                for plane in (3, 2, 1):
+                    b1_partner |= (candidate[..., plane] & (1 << (5-plane))) != 0
+                b1_no_partner_carry_out += int((b1_events * (~b1_partner)).sum())
+                escape.observe(bank, trace, candidate)
+                incoming += int(trace['incoming_negative_units'].sum())
+                intercepted += int(trace['intercepted_negative_units'].sum())
+                b0_pairs += int((removed - trace['intercepted_negative_units']).sum())
+                forwarded += int(moved.sum())
+                opportunities[0].observe(trace['before_existing_b0'])
+                opportunities[1].observe(candidate)
+                candidate, pairs = clear_one_b1_pair(candidate)
+                b1_pairs += int(pairs.sum())
+                b2_events = ((bank[..., 4] & 7) + pending) // 8
+                b2_carry_out += int(b2_events.sum())
+                b2_partner = ((candidate[..., 3] & 8) != 0) | ((candidate[..., 2] & 16) != 0)
+                b2_no_partner_carry_out += int((b2_events * (~b2_partner)).sum())
+                opportunities[2].observe(candidate)
+                candidate, pairs = clear_one_b2_pair(candidate)
+                b2_pairs += int(pairs.sum())
+                opportunities[3].observe(candidate)
+                opportunities[4].observe(candidate)
+                assert torch.equal((candidate.long()*beta).sum(-1), (reference.long()*beta).sum(-1))
+                peak = torch.maximum(peak, candidate.reshape(-1,5).amax(0))
+                fired = model.layer1.lif1(conv(spike)).flatten(2).bool()[..., None, None]
+                escape.reset(fired)
+                activity.observe(bank, candidate, fired)
+                bank = candidate.masked_fill(fired, 0)
+                scu.masked_fill_(fired, 0)
+                reference.masked_fill_(fired, 0)
+            print(f'samples={(batch+1)*2}/8', flush=True)
+    report = dict(status='complete', indices=indices, steps=64, layer='layer1.conv1',
+        scope='original weights/mapping; current forwarding+b0/b1/b2; eight active Macros only; all spatial positions including silent neurons',
+        activity=activity.report(), cancellation_opportunities=[o.report() for o in opportunities],
+        incoming_negative_units=incoming, intercepted_negative_units=intercepted,
+        carry_interception_rate=intercepted/incoming if incoming else None,
+        existing_b0_pairs=b0_pairs, b1_pairs=b1_pairs, b2_pairs=b2_pairs,
+        forwarded_positive_units=forwarded, max_by_weight_plane_0_to_4=peak.tolist(),
+        max_local_coarse_integer_error=0,
+        b0_carry_out_events=escape.rollovers,
+        b0_carry_out_updates=escape.rollover_updates,
+        b0_carry_out_never_seen_partner=escape.strict_rollovers,
+        b0_total_successful_cancellations=intercepted+b0_pairs,
+        escape_to_all_b0_cancellations=escape.rollovers/(intercepted+b0_pairs),
+        strict_escape_to_all_b0_cancellations=escape.strict_rollovers/(intercepted+b0_pairs),
+        escape_to_carry_interceptions=escape.rollovers/intercepted,
+        strict_escape_to_carry_interceptions=escape.strict_rollovers/intercepted)
+    e0, e1 = escape.rollovers, b1_carry_out
+    i0, i1 = intercepted+b0_pairs, b1_pairs
+    report['two_bit_formula'] = dict(
+        e0=e0, e1=e1, i0=i0, i1=i1,
+        strict_e0=escape.strict_rollovers, strict_e1=b1_no_partner_carry_out,
+        strict_product=(escape.strict_rollovers/(i0+escape.strict_rollovers))*(b1_no_partner_carry_out/(i1+b1_no_partner_carry_out)),
+        strict_product_incoming_interception_only=(escape.strict_rollovers/(intercepted+escape.strict_rollovers))*(b1_no_partner_carry_out/(i1+b1_no_partner_carry_out)),
+        p0=e0/(i0+e0), p1=e1/(i1+e1),
+        product=(e0/(i0+e0))*(e1/(i1+e1)),
+        definition='actual upward carry events; all b0 successful cancellations; product requested by user, not an empirically measured joint probability',
+        p0_incoming_interception_only=e0/(intercepted+e0),
+        product_incoming_interception_only=(e0/(intercepted+e0))*(e1/(i1+e1)))
+    previous = report['two_bit_formula']
+    p2 = b2_carry_out/(b2_pairs+b2_carry_out)
+    strict_p2 = b2_no_partner_carry_out/(b2_pairs+b2_no_partner_carry_out)
+    report['three_bit_formula'] = dict(
+        e2=b2_carry_out, strict_e2=b2_no_partner_carry_out, i2=b2_pairs,
+        p2=p2, strict_p2=strict_p2,
+        product=previous['product']*p2,
+        product_incoming_interception_only=previous['product_incoming_interception_only']*p2,
+        strict_product=previous['strict_product']*strict_p2,
+        strict_product_incoming_interception_only=previous['strict_product_incoming_interception_only']*strict_p2,
+        definition='user requested product of three marginal event fractions, not measured joint path probability')
+    assert opportunities[0].matched == b0_pairs
+    assert opportunities[1].matched == b1_pairs
+    assert opportunities[2].matched == b2_pairs
+    out = ROOT/'IMC_ResNet/checkpoints/mr_three_bit_escape.json'
+    out.write_text(json.dumps(report, indent=2), encoding='utf8')
+    print(json.dumps({k:v for k,v in report.items() if k != 'activity'}, indent=2))
+
+
+if __name__ == '__main__':
+    main()

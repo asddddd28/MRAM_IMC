@@ -1,0 +1,38 @@
+{
+  "spikes": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0
+  ],
+  "candidate_u": [
+    66,
+    142,
+    61,
+    131,
+    31,
+    92,
+    143,
+    49
+  ],
+  "integer_spikes": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0
+  ],
+  "first_divergence": null,
+  "overflow_updates": 0,
+  "max_candidate_mr": 0,
+  "physical_time_normalized": 356.0,
+  "latency_scope": "functional digital order; uncalibrated analog delays only",
+  "status": "complete"
+}

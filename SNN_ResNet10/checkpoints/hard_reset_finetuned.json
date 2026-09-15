@@ -1,0 +1,24 @@
+{
+  "before_accuracy": 0.097,
+  "after_accuracy": 0.7455,
+  "epochs": 1,
+  "steps": 16,
+  "train_size": 5000,
+  "test_size": 2000,
+  "lr": 0.0002,
+  "hard_reset": true,
+  "weight_transfer": {
+    "copied_tensors": 74,
+    "source_tensors": 74
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.7989363142206698,
+      "train_accuracy": 0.8114,
+      "test_accuracy": 0.7455
+    }
+  ],
+  "seconds": 337.0901056000148,
+  "checkpoint": "D:\\Projects\\ai\\MRAM_IMC\\SNN_ResNet10\\checkpoints\\hard_reset_finetuned.pt"
+}

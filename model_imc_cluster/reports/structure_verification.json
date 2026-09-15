@@ -1,0 +1,26 @@
+{
+  "model_ast_unchanged_excluding_docstrings": {
+    "analog.py": true,
+    "cli.py": true,
+    "cluster.py": true,
+    "config.py": true,
+    "digital.py": true,
+    "encoding.py": true,
+    "events.py": true,
+    "mapping.py": true,
+    "memory.py": true,
+    "model.py": true,
+    "trace.py": true,
+    "__init__.py": true,
+    "__main__.py": true
+  },
+  "reference_sha256_unchanged": {
+    "442705ba-fd65-45e4-b308-62f6372c92c7.png": true,
+    "MRAM_SNN_CIM_MSB双延时异或完整设计方案_局部膜电位保持与长期无发放增强版.pdf": true,
+    "Reference.md": true,
+    "三模式可重构MRAM存内计算SNN架构完整方案.pdf": true
+  },
+  "scope": "Model package only; test runner and test layout intentionally changed.",
+  "baseline_tests": 127,
+  "added_structure_regressions": 6
+}
