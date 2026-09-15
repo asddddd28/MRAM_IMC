@@ -42,16 +42,73 @@ MRAM_IMC/
 
 子项目说明：[ANN](ANN_ResNet10/README.md)、[SNN](SNN_ResNet10/README.md)、[完整 Cluster 模型](model_imc_cluster/README.md)、[简化模型](model_imc_cluster_simple/README.md)。
 
-## 3. 当前计算结构
+## 3. 当前使用的 Cluster 模型结构
 
-一个 Cluster 的 **16 个 Macro 共同维护一个逻辑神经元**。每个 Macro 每轮最多处理 36 个输入项，有五个位平面，补码位权为：
+当前整网整数推理入口采用 `ClusterConv2d + ClusterAccumulator`：将隐藏卷积的权重拆成五个补码位平面，实际计算 popcount、SCU 进位与 MR 累加，再从状态重构输出。它不是只统计脉冲数量的事件估算器。
 
-```text
-MR0 / MR1 / MR2 / MR3 / MR4
- +1 /  +2 /  +4 /  +8 / −16
+### 3.1 Cluster → Macro → 位平面
+
+一个 Cluster 的 **16 个 Macro 共同维护一个逻辑神经元**。每个 Macro 每轮最多处理 36 个输入项，五个位平面共享这组输入，分别由自己的权重 bit 决定是否计数。
+
+```mermaid
+flowchart TB
+    X["二值输入脉冲／卷积窗口"] --> F["分块与补零：每 fold 最多 576 项"]
+    F --> M0["Macro 0：36 项 × 5 位平面"]
+    F --> MI["Macro 1 … 14"]
+    F --> M15["Macro 15：36 项 × 5 位平面"]
+    M0 --> U0["局部膜电位 U₀"]
+    MI --> UI["局部膜电位 U₁ … U₁₄"]
+    M15 --> U15["局部膜电位 U₁₅"]
+    U0 --> SUM["16 路有符号求和：U = Σ Uₘ"]
+    UI --> SUM
+    U15 --> SUM
+    SUM --> D["累计值差分 → 数字尺度／偏置／残差边界"]
+    D --> IF["数字 IF：完整输入后进行判决"]
+    IF --> S["该逻辑神经元的 spike"]
+    IF -. "发放时同步清零对应状态" .-> M0
+    IF -. "发放时同步清零对应状态" .-> MI
+    IF -. "发放时同步清零对应状态" .-> M15
 ```
 
-每个位平面保留自己的 **4-bit SCU 和无符号 MR**。五个位平面接收同一组输入，各自通过权重 bit 决定是否计数。MR4 的负号由位权体现，不需要输入负脉冲。
+每个 Macro 的内部数据流：
+
+```text
+                         同一组 x[0:35] 广播
+             ┌──────────┬──────────┬──────────┬──────────┐
+             ▼          ▼          ▼          ▼          ▼
+位平面       b0         b1         b2         b3         b4
+补码位权     +1         +2         +4         +8         −16
+权重位       B[i,0]     B[i,1]     B[i,2]     B[i,3]     B[i,4]
+             │          │          │          │          │
+         x 与权重位结合，各自求和：k_b = Σ_i x_i × B[i,b]
+             │          │          │          │          │
+           SCU0       SCU1       SCU2       SCU3       SCU4
+           4 bit      4 bit      4 bit      4 bit      4 bit
+             │进位      │进位      │进位      │进位      │进位
+            MR0        MR1        MR2        MR3        MR4
+             └──────────┴──────────┴──────────┴──────────┘
+                  按位权合成本 Macro 的局部膜电位 U_m
+```
+
+MR4 为 MSB 位平面的无符号计数器，负贡献由 −16 位权体现，不需要负输入脉冲。其余 MR 同样存储无符号计数。
+
+| 结构项 | 当前模型 |
+|---|---|
+| Macro 数 | 每个逻辑 Cluster 16 个 |
+| 每 Macro 单轮输入项 | 最多 36 个，不足补零 |
+| 位平面数／位权 | 5 个；`(1,2,4,8,-16)` |
+| SCU | 每位平面一个 4-bit 低位计数，共 80 路 |
+| MR | 每位平面一个无符号高位计数，共 80 路；位宽可配置 |
+| 默认构造配置 | `mr_bits=8`、`overflow='wide_reference'`；具体实验显式指定 |
+| 单 fold 最大 fan-in | `16×36=576` 个输入—权重项 |
+| 神经元发放 | 16 个 Macro 合成后统一判决，而非 16 个独立神经元 |
+| 主实验状态行为 | 无泄漏；发放硬清零，未发放保留 |
+
+Python 将多个样本、输出通道和空间位置并行计算，是逻辑上下文的批处理，不代表硬件上物理复制了同样数量的 Cluster。
+
+### 3.2 状态更新、输入分块和统一复位
+
+每个位平面一次更新为：
 
 ```text
 z       = SCU + popcount
@@ -63,10 +120,78 @@ MR_new  = MR + carry
 总膜电位   U   = Σ_m U_m
 ```
 
-- carry 可以为 0～3，不能用单个布尔溢出标志代替。
-- 大输入扇入拆成多个 fold，连续累加到同一状态，完成全部输入后再判决。
-- 本文主要实验采用无泄漏、发放后全部 Macro 同步硬清零；未发放则保留状态。
-- 当前网络推理仍保留数字 stem、FC、偏置／尺度与残差等边界；“Cluster 整数算术”不等同于完整晶体管级 MRAM 电路仿真。
+因为 `SCU≤15`、`popcount≤36`，carry 可以为 0～3，不能用一个布尔溢出标志代替。上述更新是原始后端规则；启用位面优化时，在候选状态更新过程中加入第 4 节的转发与抵消。
+
+大输入扇入拆成多个 fold，连续累加到**同一组** SCU/MR，不在 fold 之间清零或重新载入旧状态：
+
+| 3×3 卷积输入通道数 | 展开输入项 | fold 数 | 分配举例 |
+|---:|---:|---:|---|
+| 32 | 288 | 1 | 8 个 Macro 有效、8 个补零；当前第一层为此配置 |
+| 64 | 576 | 1 | 16 个 Macro 各 36 项 |
+| 128 | 1152 | 2 | 同一状态连续接收两个 fold |
+| 256 | 2304 | 4 | 同一状态连续接收四个 fold |
+
+`1×1` 卷积按自己的实际 fan-in 分块，不能直接套用上表。
+
+```text
+恢复／保留当前神经元上下文
+    → fold 0 更新 → … → 最后一个 fold 更新
+    → 重构累计值 → 数字 IF 判决
+    ├─ 发放：清零该输出对应的全部 Macro、五个位平面的 SCU/MR
+    └─ 未发放：保留状态供下个逻辑时间步使用
+```
+
+默认整网后端将状态保存在 Python 张量中，形状为 `[batch, output_channel, position, 16, 5]`；它没有模拟实际 RAM 保存／恢复周期。`MacroStateRAM` 是另行接入交换回放的功能性存储模型。
+
+### 3.3 与 SNN 网络的连接
+
+`make_explicit_cluster()` 将 11 个隐藏卷积（包括投影支路卷积）替换成 `ClusterConv2d`，不把连续输入的 stem 和最终 FC 分类头替换为该二值脉冲后端。
+
+实际计算链路为：
+
+```text
+输入脉冲
+ → unfold 卷积窗口、按 fold/Macro 切分
+ → 五位权重门控 popcount
+ → ClusterAccumulator.add_counts()：更新 SCU/MR
+ → ClusterAccumulator.reduce()：有符号整数状态合成
+ → 当前累计值减去 previous_total，得到本步增量
+ → 恢复权重／输入尺度，加数字偏置；按网络拓扑融合残差
+ → 数字 IF 积分与发放
+ → fire() 清零 SCU/MR 和 previous_total
+```
+
+累计值差分用于避免数字 IF 再次累加全部历史膜电位。权重采用逐输出通道 int5 量化；物理模拟转换误差没有因为使用整数状态合成而自动纳入。
+
+### 3.4 硬件参考结构与当前实现边界
+
+下图为工程已有的五位 Macro/Cluster 参考图，包含 Weight/Mem Array、SSU、PMAC、SCU/MR、正负 TDP 及 TW/SG 电荷转换通路：
+
+![五位 Macro 与 16-Macro 合成参考结构](model_imc_cluster/442705ba-fd65-45e4-b308-62f6372c92c7.png)
+
+该图表示硬件设计意图。当前默认整网整数后端采用以下对应方式：
+
+| 参考结构部分 | 当前 Python 实现／状态 |
+|---|---|
+| 输入缓冲与权重位读取 | 二值输入张量、`unfold`、预先拆分的五位权重 |
+| SSU／PMAC 计数功能 | 按位权重门控并求 popcount，不模拟真实感放时序 |
+| SCU／MR 状态 | `ClusterAccumulator`，真实执行整数进位、保持与复位 |
+| 正负 TDP、TW/SG、电容合成的数值功能 | 默认后端通过 `reduce()` 按位权求整数和；未逐脉冲运行模拟电路 |
+| 阈值判决 | 网络中的数字 IF，与状态清零钩子关联 |
+| Mem Array 保存／恢复 | 默认后端驻留张量；交换实验用 `MacroStateRAM` 模拟记录访问 |
+
+完整行为模型和波形调试工具位于 `model_imc_cluster/` 与 `model_imc_cluster_simple/`，不应假设它们的所有物理参数已自动接入 `IMC_ResNet` 整网推理。
+
+### 3.5 默认后端与优化后端
+
+| 模块 | 作用 | 当前接入范围 |
+|---|---|---|
+| [ClusterConv2d / ClusterAccumulator](IMC_ResNet/models/cluster_backend.py) | 原始五位 PMAC、SCU/MR 和状态合成 | 默认整网整数后端 |
+| [IndependentCancelMR](IMC_ResNet/models/independent_cancel_mr.py) | 独立 MR＋位面转发、b0/b1/b2 抵消 | 显式实验开关，已做小样本全网对照 |
+| [swap_macro_pairs](IMC_ResNet/models/macro_state_swap.py) | 同节点 Macro 间成对状态置换 | 第一层回放 |
+| [MacroStateRAM](IMC_ResNet/models/macro_state_ram.py) | 将固定交换并入恢复地址选择 | 第一层功能性 RAM 回放 |
+
+当前主线仍是**每位面一个 MR**。共享有符号 MR 是另一个历史实验配置，并未替换这里的默认结构。完整位面优化＋Macro 交换＋强制 5-bit 的组合结构尚未完成整网接入。
 
 ## 4. 当前 MR 优化结果
 
